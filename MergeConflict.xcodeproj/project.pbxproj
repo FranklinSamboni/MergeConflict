@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		29FC92B228DE6317004F5F0D /* MergeConflict.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FC92A928DE6317004F5F0D /* MergeConflict.framework */; };
 		29FC92B728DE6317004F5F0D /* MergeConflictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FC92B628DE6317004F5F0D /* MergeConflictTests.swift */; };
-		29FC92B828DE6317004F5F0D /* MergeConflict.h in Headers */ = {isa = PBXBuildFile; fileRef = 29FC92AC28DE6317004F5F0D /* MergeConflict.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29FC92C328DE64FA004F5F0D /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29FC92C128DE64FA004F5F0D /* Chat.xcdatamodeld */; };
+		29FC92C528DE6BDF004F5F0D /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FC92C428DE6BDF004F5F0D /* CoreDataStore.swift */; };
+		29FC92C728DE6BF6004F5F0D /* ChatThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FC92C628DE6BF6004F5F0D /* ChatThread.swift */; };
+		29FC92C928DE76FE004F5F0D /* MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FC92C828DE76FE004F5F0D /* MessageHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,9 +27,12 @@
 
 /* Begin PBXFileReference section */
 		29FC92A928DE6317004F5F0D /* MergeConflict.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MergeConflict.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		29FC92AC28DE6317004F5F0D /* MergeConflict.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MergeConflict.h; sourceTree = "<group>"; };
 		29FC92B128DE6317004F5F0D /* MergeConflictTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MergeConflictTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29FC92B628DE6317004F5F0D /* MergeConflictTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeConflictTests.swift; sourceTree = "<group>"; };
+		29FC92C228DE64FA004F5F0D /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
+		29FC92C428DE6BDF004F5F0D /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
+		29FC92C628DE6BF6004F5F0D /* ChatThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatThread.swift; sourceTree = "<group>"; };
+		29FC92C828DE76FE004F5F0D /* MessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +75,10 @@
 		29FC92AB28DE6317004F5F0D /* MergeConflict */ = {
 			isa = PBXGroup;
 			children = (
-				29FC92AC28DE6317004F5F0D /* MergeConflict.h */,
+				29FC92C128DE64FA004F5F0D /* Chat.xcdatamodeld */,
+				29FC92C428DE6BDF004F5F0D /* CoreDataStore.swift */,
+				29FC92C628DE6BF6004F5F0D /* ChatThread.swift */,
+				29FC92C828DE76FE004F5F0D /* MessageHandler.swift */,
 			);
 			path = MergeConflict;
 			sourceTree = "<group>";
@@ -89,7 +98,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29FC92B828DE6317004F5F0D /* MergeConflict.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +152,7 @@
 				TargetAttributes = {
 					29FC92A828DE6317004F5F0D = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 					29FC92B028DE6317004F5F0D = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -191,6 +200,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29FC92C528DE6BDF004F5F0D /* CoreDataStore.swift in Sources */,
+				29FC92C328DE64FA004F5F0D /* Chat.xcdatamodeld in Sources */,
+				29FC92C928DE76FE004F5F0D /* MessageHandler.swift in Sources */,
+				29FC92C728DE6BF6004F5F0D /* ChatThread.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +350,7 @@
 		29FC92BC28DE6317004F5F0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -357,6 +371,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -364,6 +379,7 @@
 		29FC92BD28DE6317004F5F0D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -391,6 +407,7 @@
 		29FC92BF28DE6317004F5F0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -405,6 +422,7 @@
 		29FC92C028DE6317004F5F0D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -447,6 +465,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		29FC92C128DE64FA004F5F0D /* Chat.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				29FC92C228DE64FA004F5F0D /* Chat.xcdatamodel */,
+			);
+			currentVersion = 29FC92C228DE64FA004F5F0D /* Chat.xcdatamodel */;
+			path = Chat.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29FC92A028DE6316004F5F0D /* Project object */;
 }
