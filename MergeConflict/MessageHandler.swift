@@ -15,15 +15,17 @@ class MessageHandler {
     }
 
     func handleNewMessage(threadID: String, _ message: String) throws {
-        var thread: ChatThread! = try store.fetchThread(threadID: threadID)
+        var thread = try store.fetchThread(threadID: threadID)
         if thread == nil {
             thread = try store.createNewThread(with: threadID)
         }
         //.... Do some other stuffs, like insert the new message.
 
         // Since there is a new message, mark thread as unread
-        try store.updateThread(thread: thread!, unread: true)
-
+        if let thread = thread {
+            try store.updateThread(thread: thread, unread: true)
+        }
+        
         // Create notification
         //...
     }

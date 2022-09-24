@@ -10,26 +10,33 @@ import CoreData
 
 class CoreDataStore {
     static let modelName = "Chat"
-
+    static let model = Bundle(for: CoreDataStore.self).url(forResource: CoreDataStore.modelName, withExtension: "momd").flatMap { modelURL in
+        NSManagedObjectModel(contentsOf: modelURL)
+    }
+    
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
 
     init(storeURL: URL) throws {
-        container = try Self.loadContainer(storeURL: storeURL, modelName: Self.modelName)
+        guard let model = CoreDataStore.model else {
+            throw NSError(domain: "Model not found", code: 0)
+        }
+        
+        container = try Self.loadContainer(storeURL: storeURL, modelName: Self.modelName, model: model)
         context = container.newBackgroundContext()
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
 
     func createNewThread(with identifier: String,
-                         updatedDate: Date = Date()) throws -> ChatThread {
-        var thread: ChatThread!
+                         updatedDate: Date = Date()) throws -> ChatThread? {
+        var thread: ChatThread?
         var generatedError: Error?
 
         context.performAndWait {
             do {
                 thread = ChatThread(context: context)
-                thread.threadID = identifier
-                thread.updatedDate = updatedDate
+                thread?.threadID = identifier
+                thread?.updatedDate = updatedDate
                 try context.save()
 
             } catch let error {
@@ -83,10 +90,7 @@ class CoreDataStore {
 
 extension CoreDataStore {
 
-    static func loadContainer(storeURL: URL, modelName: String) throws -> NSPersistentContainer {
-        let modelURL = Bundle(for: Self.self).url(forResource: modelName, withExtension: "momd")!
-        let model = NSManagedObjectModel(contentsOf: modelURL)!
-
+    static func loadContainer(storeURL: URL, modelName: String, model: NSManagedObjectModel) throws -> NSPersistentContainer {
         let description = NSPersistentStoreDescription(url: storeURL)
         let container = NSPersistentContainer(name: modelName, managedObjectModel: model)
         container.persistentStoreDescriptions = [description]
