@@ -56,7 +56,6 @@ class MergeConflictTests: XCTestCase {
         XCTAssertEqual(thread?.unread, true)
     }
 
-    // This test is flaky, sometimes passes some times fails
     func test_thatThereIsNotMergeConflict_WhenProcessesSaveChangesAtDifferentTimes() throws {
         let appStore = try CoreDataStore(storeURL: storeURL)
         let extStore = try CoreDataStore(storeURL: storeURL)
