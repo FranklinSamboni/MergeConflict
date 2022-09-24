@@ -17,6 +17,7 @@ class CoreDataStore {
     init(storeURL: URL) throws {
         container = try Self.loadContainer(storeURL: storeURL, modelName: Self.modelName)
         context = container.newBackgroundContext()
+        context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
     }
 
     func createNewThread(with identifier: String,
